@@ -208,7 +208,7 @@ links.Timeline = function(container) {
         'cluster': false,
         'style': 'box',
         'customStackOrder': false, //a function(a,b) for determining stackorder amongst a group of items. Essentially a comparator, -ve value for "a before b" and vice versa
-
+        
         // i18n: Timeline only has built-in English text per default. Include timeline-locales.js to support more localized text.
         'locale': 'en',
         'MONTHS': new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"),
@@ -275,7 +275,7 @@ links.Timeline = function(container) {
  */
 links.Timeline.prototype.draw = function(data, options) {
     this.setOptions(options);
-
+    
     if (this.options.selectable) {
         links.Timeline.addClassName(this.dom.frame, "timeline-selectable");
     }
@@ -309,7 +309,7 @@ links.Timeline.prototype.setOptions = function(options) {
                 this.options[i] = options[i];
             }
         }
-
+        
         // prepare i18n dependent on set locale
         if (typeof links.locales !== 'undefined' && this.options.locale !== 'en') {
             var localeOpts = links.locales[this.options.locale];
@@ -1871,7 +1871,7 @@ links.Timeline.prototype.repaintGroups = function() {
     labels.splice(needed, current - needed);
     labelLines.splice(needed, current - needed);
     itemLines.splice(needed, current - needed);
-
+    
     links.Timeline.addClassName(frame, options.groupsOnRight ? 'timeline-groups-axis-onright' : 'timeline-groups-axis-onleft');
 
     // position the groups
@@ -2177,9 +2177,9 @@ links.Timeline.prototype.repaintNavigation = function () {
             navBar.addButton.className = "timeline-navigation-new";
             navBar.addButton.title = options.CREATE_NEW_EVENT;
             var addIconSpan = document.createElement("SPAN");
-            addIconSpan.className = "ui-icon ui-icon-circle-plus";
+            addIconSpan.className = "ui-icon ui-icon-circle-plus";            
             navBar.addButton.appendChild(addIconSpan);
-
+            
             var onAdd = function(event) {
                 links.Timeline.preventDefault(event);
                 links.Timeline.stopPropagation(event);
@@ -2241,7 +2241,7 @@ links.Timeline.prototype.repaintNavigation = function () {
                 var ziIconSpan = document.createElement("SPAN");
                 ziIconSpan.className = "ui-icon ui-icon-circle-zoomin";
                 navBar.zoomInButton.appendChild(ziIconSpan);
-
+                
                 var onZoomIn = function(event) {
                     links.Timeline.preventDefault(event);
                     links.Timeline.stopPropagation(event);
@@ -2259,7 +2259,7 @@ links.Timeline.prototype.repaintNavigation = function () {
                 var zoIconSpan = document.createElement("SPAN");
                 zoIconSpan.className = "ui-icon ui-icon-circle-zoomout";
                 navBar.zoomOutButton.appendChild(zoIconSpan);
-
+                
                 var onZoomOut = function(event) {
                     links.Timeline.preventDefault(event);
                     links.Timeline.stopPropagation(event);
@@ -2279,7 +2279,7 @@ links.Timeline.prototype.repaintNavigation = function () {
                 var mlIconSpan = document.createElement("SPAN");
                 mlIconSpan.className = "ui-icon ui-icon-circle-arrow-w";
                 navBar.moveLeftButton.appendChild(mlIconSpan);
-
+                
                 var onMoveLeft = function(event) {
                     links.Timeline.preventDefault(event);
                     links.Timeline.stopPropagation(event);
@@ -2297,7 +2297,7 @@ links.Timeline.prototype.repaintNavigation = function () {
                 var mrIconSpan = document.createElement("SPAN");
                 mrIconSpan.className = "ui-icon ui-icon-circle-arrow-e";
                 navBar.moveRightButton.appendChild(mrIconSpan);
-
+                
                 var onMoveRight = function(event) {
                     links.Timeline.preventDefault(event);
                     links.Timeline.stopPropagation(event);
@@ -4546,17 +4546,17 @@ links.Timeline.prototype.getGroup = function (groupName) {
         groups.push(groupObj);
         // sort the groups
         if (this.options.groupsOrder == true) {
-            groups = groups.sort(function (a, b) {
-                if (a.content > b.content) {
-                    return 1;
-                }
-                if (a.content < b.content) {
-                    return -1;
-                }
-                return 0;
-            });
+	        groups = groups.sort(function (a, b) {
+	            if (a.content > b.content) {
+	                return 1;
+	            }
+	            if (a.content < b.content) {
+	                return -1;
+	            }
+	            return 0;
+	        });
         } else if (typeof(this.options.groupsOrder) == "function") {
-            groups = groups.sort(this.options.groupsOrder)
+        	groups = groups.sort(this.options.groupsOrder)
         }
 
         // rebuilt the groupIndexes
@@ -6358,7 +6358,7 @@ links.Timeline.getPageX = function (event) {
 links.Timeline.addClassName = function(elem, className) {
     var classes = elem.className.split(' ');
     var classesToAdd = className.split(' ');
-
+    
     var added = false;
     for (var i=0; i<classesToAdd.length; i++) {
         if (classes.indexOf(classesToAdd[i]) == -1) {
@@ -6366,7 +6366,7 @@ links.Timeline.addClassName = function(elem, className) {
             added = true;
         }
     }
-
+    
     if (added) {
         elem.className = classes.join(' ');
     }
@@ -6380,7 +6380,7 @@ links.Timeline.addClassName = function(elem, className) {
 links.Timeline.removeClassName = function(elem, className) {
     var classes = elem.className.split(' ');
     var classesToRemove = className.split(' ');
-
+    
     var removed = false;
     for (var i=0; i<classesToRemove.length; i++) {
         var index = classes.indexOf(classesToRemove[i]);
@@ -6389,7 +6389,7 @@ links.Timeline.removeClassName = function(elem, className) {
             removed = true;
         }
     }
-
+    
     if (removed) {
         elem.className = classes.join(' ');
     }
